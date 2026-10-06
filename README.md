@@ -1,30 +1,43 @@
-# LectorNoticias - Aplicación Móvil en Android
+# Práctica de Control de LEDs en Raspberry Pi (BCM vs BOARD)
 
-Aplicación móvil desarrollada en **Android** (Java) que consume una API remota para mostrar una lista dinámica de publicaciones o noticias utilizando componentes modernos de la interfaz de usuario como `RecyclerView` y adaptadores personalizados.
+Este repositorio contiene scripts en Python diseñados para controlar un LED conectado a una **Raspberry Pi** utilizando la librería `RPi.GPIO`, demostrando las dos formas principales de numeración de pines disponibles: **BCM** (Broadcom SOC channel) y **BOARD** (numeración física de la placa).
 
-## 🚀 Tecnologías Utilizadas
+## 🚀 Tecnologías y Hardware Utilizado
 
-* **Lenguaje:** Java
-* **Entorno de Desarrollo:** Android Studio
-* **Componentes UI:** `RecyclerView`, `CardView`, Activity, Layouts XML
-* **Consumo de Red / API:** Conexión HTTP para extraer datos en formato JSON (`org.json`)
-* **Control de Versiones:** Git & GitHub / Docker
-
----
-
-## 📱 Estructura Principal del Proyecto
-
-* `app/src/main/java/mx/edu/tesoem/istd/tsdmh/lectornoticias/`: Paquete principal del código fuente.
-  * `MainActivity.java`: Actividad principal encargada de inicializar la interfaz y realizar la petición de datos remotos.
-  * `Noticias.java`: Clase modelo que estructura los atributos de cada noticia.
-  * `NoticiasAdapter.java`: Adaptador personalizado para enlazar los datos con los elementos visuales del `RecyclerView`.
-* `app/src/main/res/layout/`: Diseños de las interfaces de usuario (actividades e ítems individuales).
-* `AndroidManifest.xml`: Configuración general de la aplicación y permisos de internet.
+* **Hardware:** Raspberry Pi (cualquier modelo con pines GPIO de 40 pines)
+* **Componente:** LED y resistencia de protección (aprox. 220Ω - 330Ω)
+* **Lenguaje:** Python 3
+* **Librería GPIO:** `RPi.GPIO`
+* **Control de Versiones:** Git & GitHub
 
 ---
 
-## ⚙️ Configuración y Ejecución
+## 📌 Descripción de los Programas
 
-1. Clonar el repositorio:
+El repositorio incluye dos implementaciones prácticas:
+
+1. **Modo BCM (`control_bcm.py`):**
+   * Utiliza la numeración lógica del procesador Broadcom.
+   * Conecta el LED al **GPIO 18** (que corresponde físicamente al **Pin 12**).
+   * Ejecuta un bucle infinito (`while True`) de parpadeo continuo (encendido y apagado cada 1 segundo) hasta que el usuario lo interrumpe manualmente con `Ctrl+C`.
+
+2. **Modo BOARD (`control_board.py`):**
+   * Utiliza la numeración física de los pines de la placa.
+   * Conecta directamente al **Pin físico 12** (equivalente al GPIO 18).
+   * Ejecuta un patrón de control estructurado por ciclos limitados (10 iteraciones de parpadeos rápidos con pausas largas).
+
+---
+
+## 🛠️ Conexión de Hardware
+
+* **Ánodo (Pata larga del LED):** Conectado a través de la resistencia hacia el **Pin 12 (GPIO 18)**.
+* **Cátodo (Pata corta del LED):** Conectado a cualquier pin de **GND** (Tierras físicas, por ejemplo, el pin 6 o 14) de la Raspberry Pi.
+
+---
+
+## ⚙️ Ejecución y Uso
+
+1. Clonar el repositorio en tu Raspberry Pi:
    ```bash
-   git clone [https://github.com/tu-usuario/LectorNoticias.git](https://github.com/tu-usuario/LectorNoticias.git)
+   git clone [https://github.com/](https://github.com/) tu-usuario/nombre-repositorio.git
+   
